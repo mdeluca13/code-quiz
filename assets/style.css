@@ -1,0 +1,54 @@
+/* Positioning highscore to top left of screen */
+#high-score {
+    position: fixed;
+    left: 5px;
+    top: 0px;
+    padding: 5px;
+}
+
+/* Positioning timer to top left of screen */
+#timer {
+    position: fixed;
+    right: 5px;
+    top: 0px; 
+    padding: 5px;
+}
+
+/* positioning sections of each question and main page */
+.questions,
+#main {
+    position: relative;
+    margin: 8% auto;
+    width: 50%;
+    text-align:center;
+}
+
+/* Positioning start button */
+#start {
+    margin: 0 auto;
+}
+
+/* justifying question text */
+h2 {
+    text-align: justify;
+}
+
+/* styling buttons */
+button {
+    display:block;
+    border-radius: 5px;
+    background-color: blueviolet;
+    color:  white;
+}
+
+/* styling hover of buttons */
+button:hover {
+    background-color: rgb(113, 24, 113);
+}
+
+/* styling hover of high score */
+#high-score:hover {
+    color: blueviolet;
+    text-decoration: underline;
+}
+

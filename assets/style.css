@@ -1,8 +1,19 @@
+/* adding variables for repeat colors */
+:root {
+    --button: blueviolet;
+    --hover: rgb(113, 24, 113);
+}
+
+/* setting font family for all */
+* {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
 /* Positioning highscore to top left of screen */
-#high-score {
+#high-score-button {
     position: fixed;
     left: 5px;
-    top: 0px;
+    top: 2px;
     padding: 5px;
 }
 
@@ -10,14 +21,12 @@
 #timer {
     position: fixed;
     right: 5px;
-    top: 0px; 
+    top: 2px; 
     padding: 5px;
 }
 
 /* positioning sections of each question and main page */
-.questions,
-#main {
-    position: relative;
+.pages {
     margin: 8% auto;
     width: 50%;
     text-align:center;
@@ -37,18 +46,63 @@ h2 {
 button {
     display:block;
     border-radius: 5px;
-    background-color: blueviolet;
+    background-color: var(--button);
     color:  white;
 }
 
 /* styling hover of buttons */
 button:hover {
-    background-color: rgb(113, 24, 113);
+    background-color: var(--hover);
 }
 
-/* styling hover of high score */
-#high-score:hover {
-    color: blueviolet;
-    text-decoration: underline;
+/* Styling highscore button */
+#high-score-button {
+    background: transparent;
+    color: black;
+    border-color: transparent;
 }
 
+/* styling highscore hover */
+#high-score-button:hover {
+    border-color: var(--button);
+    color:var(--button);
+}
+
+/* styling final score text */
+#final-score {
+    text-align: left;
+}
+
+/* styling div to have enter enitials, textarea and button on same line on quiz end page */
+#enter-initials {
+    display:flex;
+    position:relative;
+}
+
+/* setting text text area and button on quiz end page to be relative to move elements for better styling */
+#enter-inst, 
+textarea,
+#submit {
+    position:relative; 
+}
+
+/* styling textarea on quiz end page*/
+textarea {
+    height: 20px;
+    top: 10px 
+}
+
+/* styling submit button on quiz end page */
+#submit {
+    height:25px;
+    top: 12px;
+}
+
+/* styling results shown */
+.result {
+    margin: auto;
+    border-top:5px double darkgray;
+    width: 50%;
+    text-align:center;
+    font-size: 25px;
+}

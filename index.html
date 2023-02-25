@@ -10,7 +10,7 @@
 <body>
     
     <!-- Main page section -->
-    <section id = "main">
+    <section id = "main" class = "pages" data-state = "shown">
         <header>
             <h1>Coding Quiz Challenge</h1>
         </header>
@@ -20,10 +20,10 @@
 
     <!-- high score and timers display -->
     <p id = "timer"></p> 
-    <p id = "high-score">View Highscores</p>
+    <button id = "high-score-button">View Highscores</button>
 
     <!-- Question sections -->
-    <section id = "question-1" class = "questions">
+    <section id = "question-1" class = "pages" data-state = "hidden" style = "display:none">
         <h2>Commonly used data types DO NOT include:</h2>
         <button class="wrong">1. Strings</button>
         <button class="wrong">2. Booleans</button>
@@ -31,7 +31,7 @@
         <button class="wrong">4. Numbers</button>
     </section>
 
-    <section id = "question-2" class = "questions">
+    <section id = "question-2" class = "pages" data-state = "hidden" style = "display:none">
         <h2>The condition in an if/else statement is enclosed within _______.</h2>
         <button class="wrong">1. Quotes</button>
         <button class="wrong">2. Curly Brackets</button>
@@ -39,7 +39,7 @@
         <button class="wrong">4. Square Brackets</button>
     </section>
 
-    <section id = question-3 class = "questions">
+    <section id = "question-3" class = "pages" data-state = "hidden" style = "display:none">
         <h2>Arrays in JavaScript can be used to store _______.</h2>
         <button class="wrong">1. Numbers and Strings</button>
         <button class="wrong">2. Other Arrays</button>
@@ -47,7 +47,7 @@
         <button class="right">4. All of the above</button>
     </section>
 
-    <section id = question-4 class = "questions">
+    <section id = "question-4" class = "pages" data-state = "hidden" style = "display:none">
         <h2>String values must be enclosed within _______ when being assigned to variables.</h2>
         <button class="wrong">1. Commas</button>
         <button class="right">2. Quotes</button>
@@ -55,13 +55,42 @@
         <button class="wrong">4. Parenthesis</button>
     </section>
 
-    <section id = question-5 class = "questions">
+    <section id = "question-5" class = "pages" data-state = "hidden" style = "display:none">
         <h2>A very useful tool used during development and debugging for printing content to the debugger is:</h2>
         <button class="right">1. console.log</button>
         <button class="wrong">2. For Loops</button>
         <button class="wrong">3. Terminal/Bash</button>
         <button class="wrong">4. JavaScript</button>
     </section>
+
+    <section id = "end-quiz" class = "pages" data-state = "hidden" style = "display:none">
+        <h2>All done!</h2>
+        <p id = "final-score"></p>
+        <div id = "enter-initials">
+            <p id = "enter-inst">Enter Initials: </p>
+            <textarea name="initials" id="initials" cols="30" rows="1"></textarea>
+            <button id = "submit">Submit</button>
+        </div>
+    </section>
+
+    <section id = "high-score" class = "pages" data-state = "hidden" style = "display:none">
+        <h2>High Scores</h2>
+        <ol>
+            <li id = "display-high-score-item"></li>
+        </ol>
+        <button id = "go-back">Go Back</button>
+        <button id = "clear">Clear High Scores</button>
+    </section>
+
+    <section id = "result-wrong" class = "result" data-state = "hidden" style = "display:none">
+        <p>Wrong</p>
+    </section>
+
+    <section id = "result-right" class = "result" data-state = "hidden" style = "display:none">
+        <p>Correct!</p>
+    </section>
+
+
 
     <script src="assets/script.js"></script> 
 </body>

@@ -98,7 +98,7 @@ function hideResultRight() {
     }, 1000);
 }
 
-// next page function to determine what page is shown and whick are hidden
+// next page function to determine what page is shown and which are hidden
 function nextPage() {
     if (main.dataset.state === "shown") {
         main.setAttribute("style", "display:none");

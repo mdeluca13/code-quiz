@@ -25,6 +25,7 @@ var initials = document.getElementById("initials");
 var displayHighScore = document.getElementById("display-high-score-item");
 var tableDIV = document.getElementById("table");
 var timerInterval; 
+var localStorageData;
 
 // timer function 
 function setTime() {
@@ -97,7 +98,7 @@ function hideResultRight() {
     }, 1000);
 }
 
-// next page function
+// next page function to determine what page is shown and whick are hidden
 function nextPage() {
     if (main.dataset.state === "shown") {
         main.setAttribute("style", "display:none");
@@ -155,7 +156,7 @@ quizStart.addEventListener("click", function() {
     setTime();
 });
 
-var localStorageData;
+
 // event listener on submit button for quiz end page to save scores
 submit.addEventListener("click", function() {
     nextPage();
@@ -193,6 +194,7 @@ function getFromLocalStorage() {
     th3.innerHTML = "Score";
     table.append(th1, th2, th3);
 
+    //if statements for 0 - 4 high scores to display sorted
     var storageData = JSON.parse(localStorage.getItem('highScoreItem'));
     if (storageData === null){
         return;
@@ -268,6 +270,7 @@ function getFromLocalStorage() {
             table.append(tr);
         }
     }
+    // display top 5 scores sorted
     else if (storageData.length >= 5) {
         sortedData = storageData.sort(function(a, b){return b.score - a.score});
         for (var i = 0; i < 5; i++) {

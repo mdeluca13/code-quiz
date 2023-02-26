@@ -19,13 +19,16 @@ var right = document.querySelectorAll(".right");
 var wrong = document.querySelectorAll(".wrong");
 var submit = document.getElementById("submit");
 var goBack = document.getElementById("go-back");
+var clear = document.getElementById("clear");
 var highScoreButton = document.getElementById("high-score-button");
 var initials = document.getElementById("initials");
 var displayHighScore = document.getElementById("display-high-score-item");
+var tableDIV = document.getElementById("table");
+var timerInterval; 
 
 // timer function 
 function setTime() {
-    var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
         timer.textContent = "Seconds Left: " + secondsLeft;
         secondsLeft--;
         if (secondsLeft < 0) {
@@ -68,6 +71,7 @@ for (i = 0; i < right.length; i++) {
         hideResultRight();
     })
 }
+
 
 //Hides wrong result after 2 seconds
 function hideResultWrong() {
@@ -151,42 +155,140 @@ quizStart.addEventListener("click", function() {
     setTime();
 });
 
-// event listener on submit button for quiz end page
+var localStorageData;
+// event listener on submit button for quiz end page to save scores
 submit.addEventListener("click", function() {
     nextPage();
-    // var list = [];
+
     var highScoreItem = {
         initials: initials.value,
         score: secondsLeft
     }
-    localStorage.setItem("highScoreItem", JSON.stringify(highScoreItem));
     
-    displayHighScore.textContent = highScoreItem.initials + " - " + highScoreItem.score;
+    localStorageData = JSON.parse(localStorage.getItem('highScoreItem'));
+    if (localStorageData === null) {
 
-    // var highScoreList = [];
-    // // var highScoreItem = {
-    // //     initials: initials.value,
-    // //     score: secondsLeft
-    // // }
-    
-    // highScoreList.push({initials: initials.value, score:secondsLeft});
-    // localStorage.setItem("highScoreItem", JSON.stringify(highScoreList));
-
-    // highScoreList = JSON.parse(localStorage.getItem("highScoreList"));
-
-    // console.log(highScoreList)
-
-    // localStorage.setItem("highScoreItem", JSON.stringify(highScoreItem));
-    // console.log(highScoreItem);
-    
-    // var initials = document.getElementById("initials");
-    // var highScoreItem = localStorage.setItem("highScoreItem", initials.value + " - " + secondsLeft);
-    // console.log(highScoreItem);
+        localStorageData = [];
+        localStorageData.push(highScoreItem);
+    }
+    else {
+        localStorageData.push(highScoreItem);
+    }
+    localStorage.setItem("highScoreItem", JSON.stringify(localStorageData));
+    getFromLocalStorage();
 })
 
-// function addHighScore() {
+// function to display the highscores on the highscore page 
+function getFromLocalStorage() {
+    tableDIV.innerHTML = "";
+    var table = document.createElement('table');
 
-// }
+    var th1 = document.createElement('th');
+    th1.innerHTML = "Rank";
+
+    var th2 = document.createElement('th');
+    th2.innerHTML = "Initials";
+
+    var th3 = document.createElement('th');
+    th3.innerHTML = "Score";
+    table.append(th1, th2, th3);
+
+    var storageData = JSON.parse(localStorage.getItem('highScoreItem'));
+    if (storageData === null){
+        return;
+    }
+    else if (storageData.length === 1) {
+
+        var tr = document.createElement('tr');
+
+        var td1 = document.createElement('td');
+        td1.innerHTML = 1 + ".";
+
+        var td2 = document.createElement('td');
+        td2.innerHTML = storageData[0].initials;
+
+        var td3 = document.createElement('td');
+        td3.innerHTML = storageData[0].score;
+
+        tr.append(td1,td2, td3);
+        table.append(tr);
+        tableDIV.append(table);
+    }
+    else if (storageData.length === 2) {
+        var sortedData = storageData.sort(function(a, b){return b.score - a.score});
+        for (var i = 0; i < 2; i++) {
+            tr = document.createElement('tr');
+    
+            td1 = document.createElement('td');
+            td1.innerHTML = i+1 + ".";
+    
+            td2 = document.createElement('td');
+            td2.innerHTML = sortedData[i].initials;
+    
+            td3 = document.createElement('td');
+            td3.innerHTML = sortedData[i].score;
+    
+            tr.append(td1,td2, td3);
+            table.append(tr);
+        }
+    }
+    else if (storageData.length === 3) {
+        sortedData = storageData.sort(function(a, b){return b.score - a.score});
+        for (var i = 0; i < 3; i++) {
+            tr = document.createElement('tr');
+    
+            td1 = document.createElement('td');
+            td1.innerHTML = i+1 + ".";
+    
+            td2 = document.createElement('td');
+            td2.innerHTML = sortedData[i].initials;
+    
+            td3 = document.createElement('td');
+            td3.innerHTML = sortedData[i].score;
+    
+            tr.append(td1,td2, td3);
+            table.append(tr);
+        }
+    }
+    else if (storageData.length === 4) {
+        sortedData = storageData.sort(function(a, b){return b.score - a.score});
+        for (var i = 0; i < 4; i++) {
+            tr = document.createElement('tr');
+    
+            td1 = document.createElement('td');
+            td1.innerHTML = i+1 + ".";
+    
+            td2 = document.createElement('td');
+            td2.innerHTML = sortedData[i].initials;
+    
+            td3 = document.createElement('td');
+            td3.innerHTML = sortedData[i].score;
+    
+            tr.append(td1,td2, td3);
+            table.append(tr);
+        }
+    }
+    else if (storageData.length >= 5) {
+        sortedData = storageData.sort(function(a, b){return b.score - a.score});
+        for (var i = 0; i < 5; i++) {
+            tr = document.createElement('tr');
+    
+            td1 = document.createElement('td');
+            td1.innerHTML = i+1 + ".";
+    
+            td2 = document.createElement('td');
+            td2.innerHTML = sortedData[i].initials;
+    
+            td3 = document.createElement('td');
+            td3.innerHTML = sortedData[i].score;
+    
+            tr.append(td1,td2, td3);
+            table.append(tr);
+        }
+    }
+    tableDIV.append(table);
+}
+
 
 // event listener on go back button on high score page
 goBack.addEventListener("click", function() {
@@ -194,11 +296,20 @@ goBack.addEventListener("click", function() {
     nextPage();
 })
 
+// event listener on high score button
 highScoreButton.addEventListener("click", function() {
+    clearInterval(timerInterval);
     for (var i = 0; i < pages.length; i++) {
         pages[i].setAttribute("style", "display: none");
         pages[i].dataset.state = "hidden";
     }
     highScore.setAttribute("style", "");
     highScore.dataset.state = "shown";
+    getFromLocalStorage();
+})
+
+// event listener for clear high score button
+clear.addEventListener("click", function() {
+    localStorage.clear();
+    getFromLocalStorage();
 })
